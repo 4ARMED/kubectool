@@ -22,6 +22,7 @@ RUN set -x \
         gcc \
         git \
         gnupg \
+        groff \
         host \
         iproute2 \
         jq \
