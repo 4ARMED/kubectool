@@ -15,19 +15,22 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN set -x \
     && apt-get -yqq update \
     && apt-get -yqq dist-upgrade \
-    && apt-get install -y curl \
-        nmap \
-        host \
-        python \
-        python-pip \
-        gcc \
-        python-dev \
-        python-setuptools \
+    && apt-get install -y \
         apt-transport-https \
-        openssh-client \
+        curl \
+        dnsutils \
+        gcc \
         git \
         gnupg \
+        host \
         jq \
+        lft \
+        nmap \
+        openssh-client \
+        python \
+        python-pip \
+        python-dev \
+        python-setuptools \
         zip \
     && apt-get clean -yqq
 
