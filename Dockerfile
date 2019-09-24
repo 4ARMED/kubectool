@@ -23,6 +23,7 @@ RUN set -x \
         git \
         gnupg \
         host \
+        iproute2 \
         jq \
         lft \
         nmap \
