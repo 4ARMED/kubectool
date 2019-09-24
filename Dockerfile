@@ -1,3 +1,4 @@
+FROM jpetazzo/nsenter as nsenter
 FROM ubuntu:18.04
 
 ARG CLOUD_SDK_VERSION=257.0.0
@@ -11,6 +12,8 @@ ENV CONSUL_VERSION=$CONSUL_VERSION
 ENV VAULT_VERSION=$VAULT_VERSION
 ENV HELM_VERSION=$HELM_VERSION
 
+COPY --from=nsenter /nsenter /usr/local/bin/nsenter
+
 ENV DEBIAN_FRONTEND noninteractive
 RUN set -x \
     && apt-get -yqq update \
@@ -19,6 +22,7 @@ RUN set -x \
         apt-transport-https \
         curl \
         dnsutils \
+        docker \
         gcc \
         git \
         gnupg \
@@ -62,5 +66,6 @@ RUN curl -sL https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CO
     chmod +x /usr/local/bin/consul
 
 RUN curl -sL https://get.helm.sh/helm-v${HELM_VERSION}-linux-amd64.tar.gz | tar xz -f - -C /usr/local/bin linux-amd64/helm --strip-components=1
+
 
 CMD ["bash"]
