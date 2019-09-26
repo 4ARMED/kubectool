@@ -67,5 +67,8 @@ RUN curl -sL https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CO
 
 RUN curl -sL https://get.helm.sh/helm-v${HELM_VERSION}-linux-amd64.tar.gz | tar xz -f - -C /usr/local/bin linux-amd64/helm --strip-components=1
 
+RUN curl -sL https://amazon-eks.s3-us-west-2.amazonaws.com/1.14.6/2019-08-22/bin/linux/amd64/aws-iam-authenticator -o /usr/local/bin/aws-iam-authenticator && \
+    chmod +x /usr/local/bin/aws-iam-authenticator
+
 
 CMD ["bash"]
