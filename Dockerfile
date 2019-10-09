@@ -72,6 +72,6 @@ RUN curl -sL https://get.helm.sh/helm-v${HELM_VERSION}-linux-amd64.tar.gz | tar 
 RUN curl -sL https://amazon-eks.s3-us-west-2.amazonaws.com/1.14.6/2019-08-22/bin/linux/amd64/aws-iam-authenticator -o /usr/local/bin/aws-iam-authenticator && \
     chmod +x /usr/local/bin/aws-iam-authenticator
 
-RUN curl -sL https://github.com/etcd-io/etcd/releases/download/${ETCD_VERSION}/etcd-${ETCD_VERSION}-linux-amd64.tar.gz | tar xz -f - -C /usr/local/bin etcd-${ETCD_VER}-linux-amd64/etcdctl --strip-components=1
+RUN curl -sL https://github.com/etcd-io/etcd/releases/download/${ETCD_VERSION}/etcd-${ETCD_VERSION}-linux-amd64.tar.gz | tar xz -f - -C /usr/local/bin etcd-${ETCD_VERSION}-linux-amd64/etcdctl --strip-components=1
 
 CMD ["bash"]
