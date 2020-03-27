@@ -33,6 +33,7 @@ RUN set -x \
         iproute2 \
         jq \
         lft \
+        nfs-common \
         nmap \
         openssh-client \
         python \
