@@ -1,18 +1,21 @@
 FROM jpetazzo/nsenter as nsenter
 FROM ubuntu:18.04
 
-ARG CLOUD_SDK_VERSION=257.0.0
+ARG CLOUD_SDK_VERSION=293.0.0
 ARG KUBELETMEIN_VERSION=0.6.5
 ARG CONSUL_VERSION=1.6.1
 ARG VAULT_VERSION=1.2.3
 ARG HELM_VERSION=2.14.3
 ARG ETCD_VERSION=v3.4.1
+ARG GOLANG_VERSION=1.14.4
+
 ENV CLOUD_SDK_VERSION=$CLOUD_SDK_VERSION
 ENV KUBELETMEIN_VERSION=$KUBELETMEIN_VERSION
 ENV CONSUL_VERSION=$CONSUL_VERSION
 ENV VAULT_VERSION=$VAULT_VERSION
 ENV HELM_VERSION=$HELM_VERSION
 ENV ETCD_VERSION=$ETCD_VERSION
+ENV GOLANG_VERSION=$GOLANG_VERSION
 
 COPY --from=nsenter /nsenter /usr/local/bin/nsenter
 
@@ -40,6 +43,7 @@ RUN set -x \
         python-pip \
         python-dev \
         python-setuptools \
+        vim \
         zip \
     && apt-get clean -yqq
 
@@ -74,5 +78,9 @@ RUN curl -sL https://amazon-eks.s3-us-west-2.amazonaws.com/1.14.6/2019-08-22/bin
     chmod +x /usr/local/bin/aws-iam-authenticator
 
 RUN curl -sL https://github.com/etcd-io/etcd/releases/download/${ETCD_VERSION}/etcd-${ETCD_VERSION}-linux-amd64.tar.gz | tar xz -f - -C /usr/local/bin etcd-${ETCD_VERSION}-linux-amd64/etcdctl --strip-components=1
+
+RUN curl -sL https://dl.google.com/go/go${GOLANG_VERSION}.linux-amd64.tar.gz | tar xz -f - -C /usr/local
+
+RUN echo "export PATH=$PATH:/usr/local/go/bin" >> /etc/profile
 
 CMD ["bash"]
