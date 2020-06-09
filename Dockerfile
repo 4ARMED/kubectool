@@ -83,4 +83,6 @@ RUN curl -sL https://dl.google.com/go/go${GOLANG_VERSION}.linux-amd64.tar.gz | t
 
 RUN echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" > /etc/profile.d/gopath.sh
 
+RUN /usr/local/go/bin/go get -u github.com/4armed/metacreds
+
 CMD ["bash"]
