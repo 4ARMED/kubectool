@@ -1,7 +1,13 @@
-uses: docker/build-push-action@v1
-with:
-  username: ${{ secrets.DOCKER_BUILD_USERNAME }}
-  password: ${{ secrets.DOCKER_BUILD_PASSWORD }}
-  repository: 4armed/kubectool
-  tags: latest
-  tag_with_sha: true
+name: Push to Docker Hub
+on: [push]
+
+jobs:
+  docker:
+    steps:
+      - uses: docker/build-push-action@v1
+        with:
+          username: ${{ secrets.DOCKER_BUILD_USERNAME }}
+          password: ${{ secrets.DOCKER_BUILD_PASSWORD }}
+          repository: 4armed/kubectool
+          tags: latest
+          tag_with_sha: true
