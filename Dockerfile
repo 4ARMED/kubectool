@@ -81,6 +81,6 @@ RUN curl -sL https://github.com/etcd-io/etcd/releases/download/${ETCD_VERSION}/e
 
 RUN curl -sL https://dl.google.com/go/go${GOLANG_VERSION}.linux-amd64.tar.gz | tar xz -f - -C /usr/local
 
-RUN echo "export PATH=$PATH:/usr/local/go/bin" > /etc/profile.d/gopath.sh
+RUN echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" > /etc/profile.d/gopath.sh
 
 CMD ["bash"]
