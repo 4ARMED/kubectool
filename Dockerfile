@@ -8,6 +8,7 @@ ARG VAULT_VERSION=1.2.3
 ARG HELM_VERSION=2.14.3
 ARG ETCD_VERSION=v3.4.1
 ARG GOLANG_VERSION=1.14.4
+ARG METACREDS_VERSION=0.0.7
 
 ENV CLOUD_SDK_VERSION=$CLOUD_SDK_VERSION
 ENV KUBELETMEIN_VERSION=$KUBELETMEIN_VERSION
@@ -16,6 +17,7 @@ ENV VAULT_VERSION=$VAULT_VERSION
 ENV HELM_VERSION=$HELM_VERSION
 ENV ETCD_VERSION=$ETCD_VERSION
 ENV GOLANG_VERSION=$GOLANG_VERSION
+ENV METACREDS_VERSION=$METACREDS_VERSION
 
 COPY --from=nsenter /nsenter /usr/local/bin/nsenter
 
@@ -83,6 +85,7 @@ RUN curl -sL https://dl.google.com/go/go${GOLANG_VERSION}.linux-amd64.tar.gz | t
 
 RUN echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" > /etc/profile.d/gopath.sh
 
-RUN /usr/local/go/bin/go get -u github.com/4armed/metacreds
+RUN curl -sL https://github.com/4ARMED/metacreds/releases/download/v${METACREDS_VERSION}/metacreds_${METACREDS_VERSION}_linux_amd64 -o /usr/local/bin/metacreds && \
+    chmod +x /usr/local/bin/metacreds
 
 CMD ["bash"]
