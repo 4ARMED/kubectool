@@ -11,7 +11,7 @@ jobs:
         run: echo ${{ secrets.DOCKER_BUILD_PASSWORD }} | docker login -u ${{ secrets.DOCKER_BUILD_USERNAME }} --password-stdin
       - name: Get version
         id: vars
-        run: echo ::set-output name=tag::$(echo ${GITHUB_SHA:7})
+        run: echo ::set-output name=tag::$(echo ${GITHUB_SHA} | cut -c1-8)
       - name: Build the tagged Docker image
         run: docker build . -f Dockerfile --tag 4armed/kubectool:${{steps.vars.outputs.tag}}
       - name: Push the tagged Docker image
