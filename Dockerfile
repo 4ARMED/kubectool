@@ -28,7 +28,6 @@ RUN set -x \
         apt-transport-https \
         curl \
         dnsutils \
-        docker \
         gcc \
         git \
         gnupg \
