@@ -24,7 +24,6 @@ COPY --from=nsenter /nsenter /usr/local/bin/nsenter
 ENV DEBIAN_FRONTEND noninteractive
 RUN set -x \
     && apt-get -yqq update \
-    && apt-get -yqq dist-upgrade \
     && apt-get install -y \
         apt-transport-https \
         curl \
