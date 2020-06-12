@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: 4armed-kubectool-node
+  name: 4armed-kubectool-node
+spec:
+  containers:
+    - image: docker.io/4armed/kubectool:latest
+      imagePullPolicy: Always
+      command:
+        - /bin/sleep
+        - 5d
+      name: root
+      securityContext:
+        privileged: true
+      resources:
+        requests:
+          cpu: 100m
+          memory: 128Mi
+        limits:
+          cpu: 200m
+          memory: 256Mi
+  hostPID: true
