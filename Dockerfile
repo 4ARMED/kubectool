@@ -83,7 +83,7 @@ RUN curl -sL https://github.com/etcd-io/etcd/releases/download/${ETCD_VERSION}/e
 
 RUN curl -sL https://dl.google.com/go/go${GOLANG_VERSION}.linux-amd64.tar.gz | tar xz -f - -C /usr/local
 
-RUN echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" > /etc/profile.d/gopath.sh
+RUN printf "\nexport PATH=$PATH:/usr/local/go/bin:$HOME/go/bin\n" >> /etc/bash.bashrc
 
 RUN curl -sL https://github.com/4ARMED/metacreds/releases/download/v${METACREDS_VERSION}/metacreds_${METACREDS_VERSION}_linux_amd64 -o /usr/local/bin/metacreds && \
     chmod +x /usr/local/bin/metacreds
