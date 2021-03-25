@@ -41,10 +41,10 @@ RUN set -x \
         nfs-common \
         nmap \
         openssh-client \
-        python3 \
-        python3-pip \
-        python3-dev \
-        python3-setuptools \
+        python \
+        python-pip \
+        python-dev \
+        python-setuptools \
         vim \
         zip \
     && apt-get clean -yqq
