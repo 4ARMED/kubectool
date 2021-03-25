@@ -3,6 +3,7 @@ FROM ubuntu:18.04
 
 ARG CLOUD_SDK_VERSION=293.0.0
 ARG KUBELETMEIN_VERSION=1.0.0
+ARG KILLAGER_VERSION=0.1.1
 ARG CONSUL_VERSION=1.6.1
 ARG VAULT_VERSION=1.2.3
 ARG HELM_VERSION=2.14.3
@@ -12,6 +13,7 @@ ARG METACREDS_VERSION=0.1.1
 
 ENV CLOUD_SDK_VERSION=$CLOUD_SDK_VERSION
 ENV KUBELETMEIN_VERSION=$KUBELETMEIN_VERSION
+ENV KILLAGER_VERSION=$KILLAGER_VERSION
 ENV CONSUL_VERSION=$CONSUL_VERSION
 ENV VAULT_VERSION=$VAULT_VERSION
 ENV HELM_VERSION=$HELM_VERSION
@@ -65,6 +67,9 @@ RUN curl -sL https://storage.googleapis.com/kubernetes-release/release/$(curl -s
 
 RUN curl -sL https://github.com/4ARMED/kubeletmein/releases/download/v${KUBELETMEIN_VERSION}/kubeletmein_${KUBELETMEIN_VERSION}_linux_amd64 -o /usr/local/bin/kubeletmein && \
     chmod +x /usr/local/bin/kubeletmein
+
+RUN curl -sL https://github.com/4ARMED/killager/releases/download/v${KILLAGER_VERSION}/killager_${KILLAGER_VERSION}_linux_amd64 -o /usr/local/bin/killager && \
+    chmod +x /usr/local/bin/killager
 
 RUN curl -sL https://releases.hashicorp.com/vault/${VAULT_VERSION}/vault_${VAULT_VERSION}_linux_amd64.zip | funzip > /usr/local/bin/vault && \
     chmod +x /usr/local/bin/vault
