@@ -3,7 +3,7 @@ FROM ubuntu:18.04
 
 ARG CLOUD_SDK_VERSION=293.0.0
 ARG KUBELETMEIN_VERSION=1.0.0
-ARG KILLAGER_VERSION=0.1.2
+ARG KILLAGER_VERSION=0.1.3
 ARG CONSUL_VERSION=1.6.1
 ARG VAULT_VERSION=1.2.3
 ARG HELM_VERSION=2.14.3
@@ -41,10 +41,10 @@ RUN set -x \
         nfs-common \
         nmap \
         openssh-client \
-        python \
-        python-pip \
-        python-dev \
-        python-setuptools \
+        python3 \
+        python3-pip \
+        python3-dev \
+        python3-setuptools \
         vim \
         zip \
     && apt-get clean -yqq
