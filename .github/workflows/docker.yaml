@@ -1,5 +1,8 @@
 name: Push to Docker Hub
-on: [push]
+on:
+  push:
+    tags:
+      - 'main'
 
 jobs:
   docker:
